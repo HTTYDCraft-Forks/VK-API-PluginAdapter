@@ -1,0 +1,4 @@
+name: VK-API
+author: Ubivashka
+main: com.httydcraft.vk.api.bungee.BungeeVkApiPlugin
+version: ${project.version}

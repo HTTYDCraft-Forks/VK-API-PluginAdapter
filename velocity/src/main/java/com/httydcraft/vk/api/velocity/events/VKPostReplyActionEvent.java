@@ -1,0 +1,49 @@
+package com.httydcraft.vk.api.velocity.events;
+
+import com.google.common.base.Preconditions;
+import com.vk.api.sdk.objects.wall.WallComment;
+
+/**
+ * Abstract base class for VK wall post reply action events.
+ */
+public abstract class VKPostReplyActionEvent extends AbstractVkEvent {
+	// region Fields
+	private WallComment postComment;
+	// endregion
+
+	// region Constructors
+	/**
+	 * Constructs a VKPostReplyActionEvent with the specified wall comment and group ID.
+	 *
+	 * @param postComment the wall comment object
+	 * @param groupId     the ID of the VK group
+	 * @throws IllegalArgumentException if postComment or groupId is null
+	 */
+	public VKPostReplyActionEvent(WallComment postComment, Integer groupId) {
+		super(groupId);
+		setPostComment(postComment);
+	}
+	// endregion
+
+	// region Public Methods
+	/**
+	 * Retrieves the wall comment associated with this event.
+	 *
+	 * @return the wall comment object
+	 */
+	public WallComment getPostComment() {
+		return postComment;
+	}
+
+	/**
+	 * Sets the wall comment for this event.
+	 *
+	 * @param postComment the wall comment object
+	 * @throws IllegalArgumentException if postComment is null
+	 */
+	public void setPostComment(WallComment postComment) {
+		Preconditions.checkNotNull(postComment, "Post comment cannot be null");
+		this.postComment = postComment;
+	}
+	// endregion
+}

@@ -1,0 +1,5 @@
+# IntellijIDEA folders
+.idea/
+
+# Maven shade result files
+**/dependency-reduced-pom.xml

@@ -1,0 +1,449 @@
+package com.httydcraft.vk.api.core.api.parsers;
+
+import com.google.gson.JsonObject;
+import com.httydcraft.vk.api.core.api.parsers.objects.CallbackButtonEvent;
+import com.httydcraft.vk.api.core.api.parsers.objects.MessageTyping;
+import com.vk.api.sdk.objects.audio.Audio;
+import com.vk.api.sdk.objects.board.TopicComment;
+import com.vk.api.sdk.objects.callback.BoardPostDelete;
+import com.vk.api.sdk.objects.callback.GroupChangePhoto;
+import com.vk.api.sdk.objects.callback.GroupChangeSettings;
+import com.vk.api.sdk.objects.callback.GroupJoin;
+import com.vk.api.sdk.objects.callback.GroupLeave;
+import com.vk.api.sdk.objects.callback.GroupOfficersEdit;
+import com.vk.api.sdk.objects.callback.LikeAddRemove;
+import com.vk.api.sdk.objects.callback.MarketComment;
+import com.vk.api.sdk.objects.callback.MarketCommentDelete;
+import com.vk.api.sdk.objects.callback.MessageAllow;
+import com.vk.api.sdk.objects.callback.MessageDeny;
+import com.vk.api.sdk.objects.callback.PhotoComment;
+import com.vk.api.sdk.objects.callback.PhotoCommentDelete;
+import com.vk.api.sdk.objects.callback.PollVoteNew;
+import com.vk.api.sdk.objects.callback.UserBlock;
+import com.vk.api.sdk.objects.callback.UserUnblock;
+import com.vk.api.sdk.objects.callback.VideoComment;
+import com.vk.api.sdk.objects.callback.VideoCommentDelete;
+import com.vk.api.sdk.objects.callback.WallCommentDelete;
+import com.vk.api.sdk.objects.messages.Message;
+import com.vk.api.sdk.objects.photos.Photo;
+import com.vk.api.sdk.objects.video.Video;
+import com.vk.api.sdk.objects.wall.WallComment;
+import com.vk.api.sdk.objects.wall.Wallpost;
+
+/**
+ * Interface for parsing VK longpoll events.
+ */
+public interface LongpoolEventParser {
+	// region Event Methods
+	/**
+	 * Handles a new message event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param message the new message object
+	 */
+	void messageNew(Integer groupId, String secret, Message message);
+
+	/**
+	 * Handles a message reply event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param message the reply message object
+	 */
+	void messageReply(Integer groupId, String secret, Message message);
+
+	/**
+	 * Handles a message edit event.
+	 *
+	 * @param groupId      the ID of the VK group
+	 * @param secret       the secret key for validation
+	 * @param messageEdit  the edited message object
+	 */
+	void messageEdit(Integer groupId, String secret, Message messageEdit);
+
+	/**
+	 * Handles a message allow event.
+	 *
+	 * @param groupId       the ID of the VK group
+	 * @param secret        the secret key for validation
+	 * @param messageAllow  the message allow object
+	 */
+	void messageAllow(Integer groupId, String secret, MessageAllow messageAllow);
+
+	/**
+	 * Handles a message deny event.
+	 *
+	 * @param groupId      the ID of the VK group
+	 * @param secret       the secret key for validation
+	 * @param messageDeny  the message deny object
+	 */
+	void messageDeny(Integer groupId, String secret, MessageDeny messageDeny);
+
+	/**
+	 * Handles a message typing event.
+	 *
+	 * @param groupId       the ID of the VK group
+	 * @param secret        the secret key for validation
+	 * @param messageTyping the message typing object
+	 */
+	void messageTyping(Integer groupId, String secret, MessageTyping messageTyping);
+
+	/**
+	 * Handles a callback button press event.
+	 *
+	 * @param groupId     the ID of the VK group
+	 * @param secret      the secret key for validation
+	 * @param buttonEvent the callback button event object
+	 */
+	void messageEvent(Integer groupId, String secret, CallbackButtonEvent buttonEvent);
+
+	/**
+	 * Handles a new photo event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param photo   the new photo object
+	 */
+	void photoNew(Integer groupId, String secret, Photo photo);
+
+	/**
+	 * Handles a new photo comment event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param comment the new photo comment object
+	 */
+	void photoCommentNew(Integer groupId, String secret, PhotoComment comment);
+
+	/**
+	 * Handles a photo comment edit event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param comment the edited photo comment object
+	 */
+	void photoCommentEdit(Integer groupId, String secret, PhotoComment comment);
+
+	/**
+	 * Handles a photo comment restore event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param comment the restored photo comment object
+	 */
+	void photoCommentRestore(Integer groupId, String secret, PhotoComment comment);
+
+	/**
+	 * Handles a photo comment delete event.
+	 *
+	 * @param groupId      the ID of the VK group
+	 * @param secret       the secret key for validation
+	 * @param commentDelete the photo comment deletion object
+	 */
+	void photoCommentDelete(Integer groupId, String secret, PhotoCommentDelete commentDelete);
+
+	/**
+	 * Handles a new audio event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param audio   the new audio object
+	 */
+	void audioNew(Integer groupId, String secret, Audio audio);
+
+	/**
+	 * Handles a new video event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param video   the new video object
+	 */
+	void videoNew(Integer groupId, String secret, Video video);
+
+	/**
+	 * Handles a new video comment event.
+	 *
+	 * @param groupId     the ID of the VK group
+	 * @param secret      the secret key for validation
+	 * @param videoComment the new video comment object
+	 */
+	void videoCommentNew(Integer groupId, String secret, VideoComment videoComment);
+
+	/**
+	 * Handles a video comment edit event.
+	 *
+	 * @param groupId     the ID of the VK group
+	 * @param secret      the secret key for validation
+	 * @param videoComment the edited video comment object
+	 */
+	void videoCommentEdit(Integer groupId, String secret, VideoComment videoComment);
+
+	/**
+	 * Handles a video comment restore event.
+	 *
+	 * @param groupId     the ID of the VK group
+	 * @param secret      the secret key for validation
+	 * @param videoComment the restored video comment object
+	 */
+	void videoCommentRestore(Integer groupId, String secret, VideoComment videoComment);
+
+	/**
+	 * Handles a video comment delete event.
+	 *
+	 * @param groupId         the ID of the VK group
+	 * @param secret          the secret key for validation
+	 * @param videoCommentDelete the video comment deletion object
+	 */
+	void videoCommentDelete(Integer groupId, String secret, VideoCommentDelete videoCommentDelete);
+
+	/**
+	 * Handles a new wall post event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param post    the new wall post object
+	 */
+	void wallPostNew(Integer groupId, String secret, Wallpost post);
+
+	/**
+	 * Handles a wall post repost event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param post    the reposted wall post object
+	 */
+	void wallRepost(Integer groupId, String secret, Wallpost post);
+
+	/**
+	 * Handles a new wall reply event.
+	 *
+	 * @param groupId    the ID of the VK group
+	 * @param secret     the secret key for validation
+	 * @param postComment the new wall comment object
+	 */
+	void wallReplyNew(Integer groupId, String secret, WallComment postComment);
+
+	/**
+	 * Handles a wall reply edit event.
+	 *
+	 * @param groupId    the ID of the VK group
+	 * @param secret     the secret key for validation
+	 * @param postComment the edited wall comment object
+	 */
+	void wallReplyEdit(Integer groupId, String secret, WallComment postComment);
+
+	/**
+	 * Handles a wall reply restore event.
+	 *
+	 * @param groupId    the ID of the VK group
+	 * @param secret     the secret key for validation
+	 * @param postComment the restored wall comment object
+	 */
+	void wallReplyRestore(Integer groupId, String secret, WallComment postComment);
+
+	/**
+	 * Handles a wall reply delete event.
+	 *
+	 * @param groupId        the ID of the VK group
+	 * @param secret         the secret key for validation
+	 * @param postCommentDelete the wall comment deletion object
+	 */
+	void wallReplyDelete(Integer groupId, String secret, WallCommentDelete postCommentDelete);
+
+	/**
+	 * Handles a like add event.
+	 *
+	 * @param groupId  the ID of the VK group
+	 * @param secret   the secret key for validation
+	 * @param likeAdd  the like add object
+	 */
+	void likeAdd(Integer groupId, String secret, LikeAddRemove likeAdd);
+
+	/**
+	 * Handles a like remove event.
+	 *
+	 * @param groupId    the ID of the VK group
+	 * @param secret     the secret key for validation
+	 * @param likeRemove the like remove object
+	 */
+	void likeRemove(Integer groupId, String secret, LikeAddRemove likeRemove);
+
+	/**
+	 * Handles a new board post event.
+	 *
+	 * @param groupId     the ID of the VK group
+	 * @param secret      the secret key for validation
+	 * @param topicComment the new topic comment object
+	 */
+	void boardPostNew(Integer groupId, String secret, TopicComment topicComment);
+
+	/**
+	 * Handles a board post edit event.
+	 *
+	 * @param groupId     the ID of the VK group
+	 * @param secret      the secret key for validation
+	 * @param topicComment the edited topic comment object
+	 */
+	void boardPostEdit(Integer groupId, String secret, TopicComment topicComment);
+
+	/**
+	 * Handles a board post restore event.
+	 *
+	 * @param groupId     the ID of the VK group
+	 * @param secret      the secret key for validation
+	 * @param topicComment the restored topic comment object
+	 */
+	void boardPostRestore(Integer groupId, String secret, TopicComment topicComment);
+
+	/**
+	 * Handles a board post delete event.
+	 *
+	 * @param groupId    the ID of the VK group
+	 * @param secret     the secret key for validation
+	 * @param boardDelete the board post deletion object
+	 */
+	void boardPostDelete(Integer groupId, String secret, BoardPostDelete boardDelete);
+
+	/**
+	 * Handles a new market comment event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param comment the new market comment object
+	 */
+	void marketCommentNew(Integer groupId, String secret, MarketComment comment);
+
+	/**
+	 * Handles a market comment edit event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param comment the edited market comment object
+	 */
+	void marketCommentEdit(Integer groupId, String secret, MarketComment comment);
+
+	/**
+	 * Handles a market comment restore event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param comment the restored market comment object
+	 */
+	void marketCommentRestore(Integer groupId, String secret, MarketComment comment);
+
+	/**
+	 * Handles a market comment delete event.
+	 *
+	 * @param groupId      the ID of the VK group
+	 * @param secret       the secret key for validation
+	 * @param commentDelete the market comment deletion object
+	 */
+	void marketCommentDelete(Integer groupId, String secret, MarketCommentDelete commentDelete);
+
+	/**
+	 * Handles a group leave event.
+	 *
+	 * @param groupId    the ID of the VK group
+	 * @param secret     the secret key for validation
+	 * @param groupLeave the group leave object
+	 */
+	void groupLeave(Integer groupId, String secret, GroupLeave groupLeave);
+
+	/**
+	 * Handles a group join event.
+	 *
+	 * @param groupId   the ID of the VK group
+	 * @param secret    the secret key for validation
+	 * @param groupJoin the group join object
+	 */
+	void groupJoin(Integer groupId, String secret, GroupJoin groupJoin);
+
+	/**
+	 * Handles a group settings change event.
+	 *
+	 * @param groupId        the ID of the VK group
+	 * @param secret         the secret key for validation
+	 * @param changeSettings the group settings change object
+	 */
+	void groupChangeSettings(Integer groupId, String secret, GroupChangeSettings changeSettings);
+
+	/**
+	 * Handles a group photo change event.
+	 *
+	 * @param groupId     the ID of the VK group
+	 * @param secret      the secret key for validation
+	 * @param changePhoto the group photo change object
+	 */
+	void groupChangePhoto(Integer groupId, String secret, GroupChangePhoto changePhoto);
+
+	/**
+	 * Handles a group officers edit event.
+	 *
+	 * @param groupId      the ID of the VK group
+	 * @param secret       the secret key for validation
+	 * @param officersEdit the group officers edit object
+	 */
+	void groupOfficersEdit(Integer groupId, String secret, GroupOfficersEdit officersEdit);
+
+	/**
+	 * Handles a new poll vote event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param vote    the poll vote object
+	 */
+	void pollVoteNew(Integer groupId, String secret, PollVoteNew vote);
+
+	/**
+	 * Handles a user block event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param block   the user block object
+	 */
+	void userBlock(Integer groupId, String secret, UserBlock block);
+
+	/**
+	 * Handles a user unblock event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param unblock the user unblock object
+	 */
+	void userUnblock(Integer groupId, String secret, UserUnblock unblock);
+
+	/**
+	 * Handles a confirmation event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 */
+	void confirmation(Integer groupId, String secret);
+
+	/**
+	 * Handles a JSON event.
+	 *
+	 * @param groupId the ID of the VK group
+	 * @param secret  the secret key for validation
+	 * @param json    the JSON event object
+	 */
+	void jsonEvent(Integer groupId, String secret, JsonObject json);
+
+	/**
+	 * Parses a JSON string into an event.
+	 *
+	 * @param json the JSON string to parse
+	 * @return true if parsing was successful, false otherwise
+	 */
+	boolean parse(String json);
+
+	/**
+	 * Parses a JSON object into an event.
+	 *
+	 * @param json the JSON object to parse
+	 * @return true if parsing was successful, false otherwise
+	 */
+	boolean parse(JsonObject json);
+	// endregion
+}

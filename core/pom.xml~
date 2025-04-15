@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>com.httydcraft.vk.api</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.4.1</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>core</artifactId>
+	
+	<properties>
+		<project.file.name>VK-API-core</project.file.name>
+		
+		<!-- Dependencies -->
+		<vk.java.sdk.version>1.0.9</vk.java.sdk.version>
+		<log4j.version>2.19.0</log4j.version>
+	</properties>
+	
+	<dependencies>
+		<!-- VK Java SDK -->
+		<dependency>
+			<groupId>com.vk.api</groupId>
+			<artifactId>sdk</artifactId>
+			<version>${vk.java.sdk.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Log4j SLF4j implementation -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Log4j API -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Log4j Core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Google Guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>32.1.2-jre</version>
+		</dependency>
+		<!-- Google Flogger -->
+		<dependency>
+			<groupId>com.google.flogger</groupId>
+			<artifactId>flogger</artifactId>
+			<version>0.7.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.flogger</groupId>
+			<artifactId>flogger-system-backend</artifactId>
+			<version>0.7.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.flogger</groupId>
+			<artifactId>google-extensions</artifactId>
+			<version>0.7.4</version>
+		</dependency>
+	</dependencies>
+
+</project>

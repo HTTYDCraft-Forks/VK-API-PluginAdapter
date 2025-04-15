@@ -1,0 +1,52 @@
+package com.httydcraft.vk.api.bukkit.events;
+
+import com.google.common.base.Preconditions;
+import com.google.common.flogger.GoogleLogger;
+import com.vk.api.sdk.objects.board.TopicComment;
+
+/**
+ * Abstract base class for VK board-related action events.
+ */
+public abstract class VKBoardActionEvent extends AbstractVkEvent {
+	// region Fields
+	private static final GoogleLogger LOGGER = GoogleLogger.forEnclosingClass();
+	protected TopicComment topicComment;
+	// endregion
+
+	// region Constructors
+	/**
+	 * Constructs a board action event with the specified topic comment and group ID.
+	 *
+	 * @param topicComment the topic comment associated with the event
+	 * @param groupId      the ID of the VK group
+	 * @throws IllegalArgumentException if topicComment or groupId is null
+	 */
+	public VKBoardActionEvent(TopicComment topicComment, Integer groupId) {
+		super(groupId);
+		setTopicComment(topicComment);
+		LOGGER.atFine().log("Initialized %s for group: %d", this.getClass().getSimpleName(), groupId);
+	}
+	// endregion
+
+	// region Public Methods
+	/**
+	 * Returns the topic comment associated with this event.
+	 *
+	 * @return the topic comment
+	 */
+	public TopicComment getTopicComment() {
+		return topicComment;
+	}
+
+	/**
+	 * Sets the topic comment for this event.
+	 *
+	 * @param topicComment the topic comment to set
+	 * @throws IllegalArgumentException if topicComment is null
+	 */
+	public void setTopicComment(TopicComment topicComment) {
+		this.topicComment = Preconditions.checkNotNull(topicComment, "Topic comment cannot be null");
+		LOGGER.atFine().log("Set topic comment for %s", this.getClass().getSimpleName());
+	}
+	// endregion
+}

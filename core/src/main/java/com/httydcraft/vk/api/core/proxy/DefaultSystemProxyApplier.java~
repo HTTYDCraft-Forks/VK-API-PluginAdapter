@@ -1,0 +1,49 @@
+package com.ubivashka.vk.http.proxy;
+
+import com.google.common.base.Preconditions;
+import com.google.common.flogger.GoogleLogger;
+
+/**
+ * Enum for default system proxy appliers.
+ * Implements ProxyApplier for different proxy types.
+ */
+public enum DefaultSystemProxyApplier implements ProxyApplier {
+    HTTP("http.proxyHost", "http.proxyPort"),
+    HTTPS("https.proxyHost", "https.proxyPort"),
+    FTP("ftp.proxyHost", "ftp.proxyPort"),
+    SOCKS("socksProxyHost", "socksProxyPort"),
+    NONE {
+        @Override
+        public void apply(String host, int port) {
+            // No-op
+            GoogleLogger.forEnclosingClass().atInfo().log("NONE proxy type selected, skipping proxy setup");
+        }
+    };
+
+    private static final GoogleLogger logger = GoogleLogger.forEnclosingClass();
+    private final String PROXY_SET_KEY = "proxySet";
+    private final String PROXY_SET_VALUE = "true";
+    private String hostKey, portKey;
+
+    DefaultSystemProxyApplier() {}
+    DefaultSystemProxyApplier(String hostKey, String portKey) {
+        this.hostKey = hostKey;
+        this.portKey = portKey;
+    }
+
+    /**
+     * Applies the proxy settings to the system properties.
+     * 
+     * @param host the proxy host
+     * @param port the proxy port
+     */
+    @Override
+    public void apply(String host, int port) {
+        Preconditions.checkNotNull(host, "Proxy host cannot be null");
+        Preconditions.checkArgument(port > 0, "Proxy port must be positive");
+        System.setProperty(PROXY_SET_KEY, PROXY_SET_VALUE);
+        System.setProperty(hostKey, host);
+        System.setProperty(portKey, Integer.toString(port));
+        logger.atInfo().log("Proxy applied: %s:%d", host, port);
+    }
+}

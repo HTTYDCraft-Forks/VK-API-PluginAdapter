@@ -1,0 +1,4 @@
+name: VK-API
+author: Ubivashka
+main: com.httydcraft.vk.api.bukkit.BukkitVkApiPlugin
+version: 1.0

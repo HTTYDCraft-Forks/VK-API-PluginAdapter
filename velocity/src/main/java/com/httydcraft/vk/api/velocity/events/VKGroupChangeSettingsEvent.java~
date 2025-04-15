@@ -1,0 +1,49 @@
+package com.ubivashka.vk.velocity.events;
+
+import com.google.common.base.Preconditions;
+import com.vk.api.sdk.objects.callback.GroupChangeSettings;
+
+/**
+ * Event triggered when a VK group's settings are changed.
+ */
+public class VKGroupChangeSettingsEvent extends AbstractVkEvent {
+	// region Fields
+	private GroupChangeSettings settings;
+	// endregion
+
+	// region Constructors
+	/**
+	 * Constructs a VKGroupChangeSettingsEvent with the specified settings and group ID.
+	 *
+	 * @param settings the group settings change object
+	 * @param groupId  the ID of the VK group
+	 * @throws IllegalArgumentException if settings or groupId is null
+	 */
+	public VKGroupChangeSettingsEvent(GroupChangeSettings settings, Integer groupId) {
+		super(groupId);
+		setSettings(settings);
+	}
+	// endregion
+
+	// region Public Methods
+	/**
+	 * Retrieves the group settings change associated with this event.
+	 *
+	 * @return the group settings change object
+	 */
+	public GroupChangeSettings getSettings() {
+		return settings;
+	}
+
+	/**
+	 * Sets the group settings change for this event.
+	 *
+	 * @param settings the group settings change object
+	 * @throws IllegalArgumentException if settings is null
+	 */
+	public void setSettings(GroupChangeSettings settings) {
+		Preconditions.checkNotNull(settings, "Settings cannot be null");
+		this.settings = settings;
+	}
+	// endregion
+}

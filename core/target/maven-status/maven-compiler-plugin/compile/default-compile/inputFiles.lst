@@ -1,0 +1,14 @@
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\api\listeners\LongpoolAPIListener.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\proxy\DefaultSystemProxyApplier.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\api\scheduler\Scheduler.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\api\VkApiPlugin.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\api\scheduler\CancellableRunnable.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\api\parsers\objects\MessageTyping.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\api\providers\AbstractVkApiProvider.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\event\VkGroupEvent.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\api\config\PluginConfig.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\api\providers\VkApiProvider.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\proxy\ProxyApplier.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\api\parsers\objects\CallbackButtonEvent.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\api\parsers\AbstractLongpoolEventParser.java
+C:\Users\BezzMC\IdeaProjects\VK-API-PluginAdapter\core\src\main\java\com\httydcraft\vk\api\core\api\parsers\LongpoolEventParser.java
